@@ -1,0 +1,68 @@
+.FooterBody{
+    display: flex;
+    flex-wrap: wrap;
+    background-color:#241e66;
+    color:rgb(192, 189, 189);  
+    width: 100%;
+    bottom: 0; 
+    left: 0; 
+    height: auto;
+}
+.Footer-span{
+    color:white;  
+    width:auto; 
+}
+.Footer-NavLink{
+    color:#b5afe9;
+}
+.Footer-NavLink:hover
+{
+    color:white;
+    text-decoration: none;
+    
+}
+.Footer-ul{
+    display:inline-block;
+    float: left;    
+}
+.Footer-ul li{
+    display:flex;
+    height: 20px;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+.Footer-heading{
+    margin-top:40px;
+   font-size: large;
+}
+
+.Email-Reg{
+    margin-top:20px;
+    margin-left: 40px;
+}
+.Footer-base{
+    border-top: solid 1px black;
+    height: 100%;
+    width:100%;
+}
+.row-1{
+    align-items: center;
+    float:left;
+    display: flex;
+}
+.col-1
+{
+    margin-top:25px;
+
+}
+.col-lg-10{
+    margin-left: -120px;
+
+    
+}
+
+.col-lg-2   
+{
+    margin-top:25px;
+    font-size: small;
+}
