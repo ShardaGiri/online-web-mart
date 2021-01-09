@@ -1,16 +1,16 @@
 import React,{useState} from "react";
-import { Button, Col, Container, Form, FormControl, Row } from 'react-bootstrap';
+import { Button, Form, FormControl} from 'react-bootstrap';
 import {NavLink} from 'react-router-dom';
-import  logo from './images/logo.jpeg'
+import  logo from './images/logo.jpeg';
 import {FaSearch,FaStoreAlt,FaRegHeart} from 'react-icons/fa';
-import {GiPhone,GiShoppingCart,GiHamburgerMenu} from 'react-icons/gi';
+import {GiPhone,GiShoppingCart} from 'react-icons/gi';
 import './Navbar.css';
 import { MenuItems } from './MenuItems';
 import { allJwellery } from './MenuItems';
+
 function NavbarMain()
 { const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
-
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
@@ -21,35 +21,48 @@ function NavbarMain()
       setDropdown(true);
     }
   };
-
   const onMouseLeave = () => {
     if (window.innerWidth < 960) {
-      setDropdown(false);
+      closeMobileMenu(false);
     } else {
-      setDropdown(false);
+      closeMobileMenu(false);
     }
   };
-  const [showLinks,setShowLinks]= useState(false);
+   const [showLinks,setShowLinks]= useState(false);
+   
+  const onMouseLeave1 = () => {
+    if (window.innerWidth < 960) {
+      setShowLinks(false);
+    } else {
+      setShowLinks(false);
+    }
+  };
+  
   return (
-            <div className="Top">
-            <div className="Navbar">
-              <div className="Header">
-              <div className="logo">
-            <img src={logo} alt="Company Logo" class="responsive" style={{width:"100px"}}></img>
-             <span>Logo</span>
-             </div>
-            <div className="links" id={showLinks ?"hidden":""}>
-             <div className="Search-bar">
+            <div className="Top" >
+            <div className="Navbar" >
+             
+              <div className="Header"id={showLinks?"h":"n"}>
+              
+              <div className="Search-bar">
               <Form inline className="Search-form" >
-              <FormControl type="text" placeholder="Search for Jwellery"/>
-              <Button>
+              <FormControl type="text" placeholder="Search for Jwellery" className="search"/>
+              <Button className="button" >
                 <span style={{color:'white'}}><FaSearch size="20px"/></span>
               </Button>
              </Form>
              </div>
+
+              <div className="logo">
+              <NavLink to="/"className="navlink" >
+            <img src={logo} alt="Company Logo" class="responsive" style={{width:"200px"}}></img>
+            </NavLink>
+             </div>
+
+             
+            <div className="links" id={showLinks ?"hidden":"nothidden"} onMouseLeave={onMouseLeave1}>
             
              <div className="link" >
-             
               <ul>
              <li> 
                <span style={{color:"gray"}}>
@@ -58,56 +71,42 @@ function NavbarMain()
               </li>
              <li>
                
-             <NavLink to="/" className="navlink" >
-               <span>Signup</span>
+             <NavLink to="/Lgin" className="navlink" >
+               <span>Login</span>
              </NavLink>
              </li>
              <li>
-             <NavLink to="/" className="navlink">
+             <NavLink to="/TryatHome" className="navlink">
                 <span> Try at Home</span>
              </NavLink>
              </li>  
              </ul>
              <ul>
                <li>
-             <NavLink to="/" className="navlink">
+             <NavLink to="/Cart" className="navlink">
               <span>
-              <GiShoppingCart class="icon"size="25px"/>
+              <GiShoppingCart class="icon"size="25px"/>Add to Cart
               </span>  
-             </NavLink>
-             </li>
-             <li>
-             <NavLink to="/"className="navlink" >
-              <span >
-              <FaStoreAlt  class="icon"size="25px"/> Locate us
-              </span> 
-             </NavLink>
-             </li>
-             <li>
-             <NavLink to="/" className="navlink">
-               <span >
-               <FaRegHeart  class="icon"size="25px"/> WishList
-               </span> 
              </NavLink>
              </li>
              </ul>
             </div>
              </div>
-
-             <button className="hider" onClick={()=>setShowLinks(!showLinks)}><GiHamburgerMenu/></button>
-        
+               <div className="hider"><i className={showLinks ? 'fas fa-times' : 'fas fa-bars'}  onClick={()=>setShowLinks(!showLinks)}/>
+               </div>
             </div>
             </div>  
 
-            <div className="NavbarBody">
+  
+   <div className="NavbarBody">
 
-      <nav className="navbar">
+      <nav className='navbar'>
         <div className="container-fluid">
         <div className='menu-icon' onClick={handleClick}>
           <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
         </div>
         
-         <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+         <ul className={click ? 'nav-menu active' : 'nav-menu'}  onMouseLeave={onMouseLeave}>
          {MenuItems.map((item, index) => {
           
           return (
@@ -122,16 +121,15 @@ function NavbarMain()
             </li>
           );
         })} 
-        <li className='dropdown'   onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}>
+        <li className='dropdown'  
+            >
            <NavLink  to="/allJwellery" style={{textDecoration:'none',color: 'white'}} onClick={closeMobileMenu}>
-          All Jwellery  <span class="caret"></span>
+          All Jwellery  <span class='caret'></span>
            </NavLink>
           <ul className="dropdown-menu" >
          
           <li className="category"><span>Shop by category <br></br></span></li>
-           
-          {dropdown &&allJwellery.map((item, index) => {
+          {allJwellery.map((item, index) => {
           return (
             <li key={index}  >
               <NavLink

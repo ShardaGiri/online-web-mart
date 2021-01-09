@@ -1,6 +1,8 @@
 .card{
     float: left;
+    
 }
-.container{
-    margin-top:20px
+.carousel-indicators
+{
+    z-index: 1;
 }

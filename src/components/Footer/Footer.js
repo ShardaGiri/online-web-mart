@@ -1,86 +1,102 @@
 
 import React from 'react'
-import { Button, Col, Container, Form, FormControl, Row } from 'react-bootstrap'
-import { FaCcMastercard, FaCcVisa, FaFacebookF, FaInstagram,FaTwitter } from 'react-icons/fa';
-import {AiOutlineCopyrightCircle} from 'react-icons/ai';
 import { NavLink } from 'react-router-dom'
 import './Footer.css';
+import { MDBCol, MDBContainer,MDBRow } from 'mdbreact';
+import { GiPhone } from 'react-icons/gi';
+import {FaFacebookF, FaInstagram, FaTwitter} from 'react-icons/fa';
+import logo from '../Navbar/images/logo.jpeg';
 export default function Footer() {
+  const liveGoldRates = () => {
+    fetch('http://www.paisabazaar.com/gold-rate/')
+        .then(response => response.json())
+        .then(data => this.setState({ totalReactPackages: data.total }));
+    
+
+  };
     return (
         <div className="FooterBody">
+      <MDBContainer className="mt-5 mb-5 text-center text-md-left">
+        <MDBRow className="mt-3">
+         
+        <MDBCol md="3" lg="3" xl="3" className="mb-4-company">
+       <p className="links">
+                     <NavLink to="/offers" className="Footer-NavLink">
+                      Terms and Conditions
+                     </NavLink> 
+            </p>
+            <p className="links">
+                     <NavLink to="/offers" className="Footer-NavLink">
+                      Cancellation,Return,Exchange & Shipping Policy
+                     </NavLink> 
+            </p>
+          </MDBCol>
+       
+          <MDBCol md="3" lg="3" xl="3" className="mb-4">
+            <h6 className="text-uppercase font-weight-bold">
+              <strong>ABOUT US</strong>
+            </h6>
             
-         <div class="container">
-             <Row>
-                 <Col md={2.5} >
-                 <ul className="Footer-ul">
-                     <li class="Footer-heading">ABOUT US</li>
-                     <li>
+            <hr  style={{ width: "200px" }} />
+            <p className="links">
                      <NavLink to="/offers" className="Footer-NavLink">
                       Who we are?
                      </NavLink> 
-                     </li>
-                     <li>
-                     <NavLink className="Footer-NavLink" to="/offers"  >
+            </p>
+            <p className="links">
+            <NavLink className="Footer-NavLink" to="/offers"  >
                       Management Team
                      </NavLink> 
-                     </li>
-                 
-                     <li class="Footer-heading">CONTACT US</li>
-                     <li>
-                     <NavLink className="Footer-NavLink" to="/offers"  >
+            </p>
+            
+          </MDBCol>
+          <MDBCol md="3" lg="3" xl="2" className="mb-4">
+            <h6 className="text-uppercase font-weight-bold">
+              <strong>CONTACT US</strong>
+            </h6>
+            <hr  style={{ width: "200px" }} />
+            <p className="links">
+            <NavLink className="Footer-NavLink" to="/FAQ"  >
                       FAQ
                      </NavLink> 
-                     </li>
-                     <li>
-                     <span className="Footer-span">1234567890</span>
-                     </li>
-                     
-                     <li>
-                     <span className="Footer-span">(9 am-10 pm, 7 days a week)</span>
-                     </li>
-                 </ul>
-                 </Col>
-                 <Col md={4} >
-                 <ul className="Footer-ul">
-                     <li class="Footer-heading">POLICIES</li>
-                     <li>
-                     <NavLink to="/offers" className="Footer-NavLink">
-                      30-Day Returns
+            </p>
+            <p className="links">
+            <NavLink className="Footer-NavLink" to="/Contactus"  >
+                      Contact Us
                      </NavLink> 
-                     </li>
-                     <li>
-                     <NavLink className="Footer-NavLink" to="/offers"  >
-                      Exchange & Buy back
-                     </NavLink> 
-                     </li>
-                     <li>
-                     <NavLink className="Footer-NavLink" to="/offers"  >
-                      Privacy Policies
-                     </NavLink> 
-                     </li>
-                     <li>
-                     <NavLink className="Footer-NavLink" to="/offers"  >
-                        Terms & Conditions
-                     </NavLink> 
-                     </li>
-                     <li class="Footer-heading">SHOP WITH CONFIDENCE</li>
-                     <li>
-                     <NavLink className="Footer-NavLink" to="/offers"  >
-                      Why Buy From Us?
-                     </NavLink> 
-                     </li>
-                     <li>
-                     <NavLink className="Footer-NavLink" to="/offers"  >
-                      Our Certification
-                     </NavLink> 
-                     </li>
-                 </ul>
-                 </Col >
-                 
-             </Row>
-         </div >
-         <div className="Footer-base">
-               </div>
-        </div>
+            </p>
+            <p >
+            (9 am-10 pm, 7 days a week)
+            </p>
+          </MDBCol>
+         
+          <MDBCol md="3" lg="3" xl="3" className="mb-4">
+            <h6 className="text-uppercase font-weight-bold">
+              <strong>Follow us</strong>
+            </h6>
+            <hr style={{ width: "200px" }} />
+            <p className="icons">
+                  <a  className="btn-floating btn-small btn-fb">
+                  <FaFacebookF size="20"/> Facebook
+                  </a>
+                  <a className="btn-floating btn-sm rgba-white-slight mx-1">
+                  <FaInstagram size="20"/> Instagram
+                  </a>  
+            
+                  <a className="btn-floating btn-sm rgba-white-slight mx-1">
+                  <FaTwitter size="20"/> Twitter
+                  </a>
+                  <a className="btn-floating btn-sm rgba-white-slight mx-1">
+                  </a>
+            </p>
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>       
+      <div className="footer-copyright">
+        <MDBContainer fluid style={{borderTop:'solid 1px white'}} >
+          &copy; {new Date().getFullYear()} Copyright: 
+        </MDBContainer>
+      </div>
+      </div>
     )
 }
