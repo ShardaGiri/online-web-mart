@@ -3,3 +3,12 @@
     margin-top:120px;
     margin-bottom: 5px;
 }
+.App .Header-Top{
+    max-height: auto;
+    max-width: auto;
+    top:0;
+}
+.App .Footer{
+    bottom:0;
+    position:bottom;
+}

@@ -10,10 +10,11 @@ import { allJwellery } from './MenuItems';
 
 function NavbarMain()
 { const [click, setClick] = useState(false);
+  const [searchTerm,setSearchTerm]=useState('');
   const [dropdown, setDropdown] = useState(false);
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
-
+  const [click1, setClick1] = useState(false);
   const onMouseEnter = () => {
     if (window.innerWidth < 960) {
       setDropdown(true);
@@ -37,6 +38,16 @@ function NavbarMain()
       setShowLinks(false);
     }
   };
+  const onValueChange = (searchTerm) => {
+      if(searchTerm==='')
+      {
+        setClick1(false)
+      }
+      else 
+      {
+        setClick1(true)
+      }
+  };
   
   return (
             <div className="Top" >
@@ -46,11 +57,36 @@ function NavbarMain()
               
               <div className="Search-bar">
               <Form inline className="Search-form" >
-              <FormControl type="text" placeholder="Search for Jwellery" className="search"/>
-              <Button className="button" >
+              <FormControl type="text" placeholder="Search for Jwellery" onChange={event=>{setSearchTerm(event.target.value);onValueChange(event.target.value)}}  className="search"/>
+
+                <Button className="button"  >
                 <span style={{color:'white'}}><FaSearch size="20px"/></span>
               </Button>
+                    
              </Form>
+             <div className={click1?"search-list":"hidden"}>
+             {click1 &&MenuItems.filter((item)=>{
+               if(item.title.toLowerCase().includes(searchTerm.toLowerCase()))
+                  return item;
+              
+             }).map((item, index) => {
+                      
+                      return (
+                      
+                       <div>
+                        <NavLink
+                            to={item.path}
+                               style={{textDecoration:'none'}}
+                          >
+                            {item.title}
+                          </NavLink>
+                          </div>   
+                      );
+                    })}
+                    </div>
+             <div>
+            
+                    </div>
              </div>
 
               <div className="logo">
@@ -76,7 +112,7 @@ function NavbarMain()
              </NavLink>
              </li>
              <li>
-             <NavLink to="/TryatHome" className="navlink">
+             <NavLink to="/TryAtHome" className="navlink">
                 <span> Try at Home</span>
              </NavLink>
              </li>  
@@ -85,7 +121,7 @@ function NavbarMain()
                <li>
              <NavLink to="/Cart" className="navlink">
               <span>
-              <GiShoppingCart class="icon"size="25px"/>Add to Cart
+              <GiShoppingCart class="icon"size="25px"/>Cart
               </span>  
              </NavLink>
              </li>

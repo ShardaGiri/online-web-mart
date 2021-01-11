@@ -3,32 +3,28 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import './Footer.css';
 import { MDBCol, MDBContainer,MDBRow } from 'mdbreact';
-import { GiPhone } from 'react-icons/gi';
 import {FaFacebookF, FaInstagram, FaTwitter} from 'react-icons/fa';
-import logo from '../Navbar/images/logo.jpeg';
 export default function Footer() {
-  const liveGoldRates = () => {
-    fetch('http://www.paisabazaar.com/gold-rate/')
-        .then(response => response.json())
-        .then(data => this.setState({ totalReactPackages: data.total }));
-    
-
-  };
     return (
         <div className="FooterBody">
       <MDBContainer className="mt-5 mb-5 text-center text-md-left">
         <MDBRow className="mt-3">
          
-        <MDBCol md="3" lg="3" xl="3" className="mb-4-company">
+        <MDBCol md="3" lg="3" xl="3" className="mb-4">
+        <h6 className="text-uppercase font-weight-bold">
+              <strong>Policies</strong>
+            </h6>
+            <hr  style={{ width: "200px" }} />
        <p className="links">
-                     <NavLink to="/offers" className="Footer-NavLink">
+                     <NavLink to="/TermsCond" className="Footer-NavLink">
                       Terms and Conditions
                      </NavLink> 
             </p>
             <p className="links">
-                     <NavLink to="/offers" className="Footer-NavLink">
-                      Cancellation,Return,Exchange & Shipping Policy
+                     <NavLink to="/Privacy" className="Footer-NavLink">
+                       Company Policy
                      </NavLink> 
+                   
             </p>
           </MDBCol>
        
@@ -69,7 +65,6 @@ export default function Footer() {
             (9 am-10 pm, 7 days a week)
             </p>
           </MDBCol>
-         
           <MDBCol md="3" lg="3" xl="3" className="mb-4">
             <h6 className="text-uppercase font-weight-bold">
               <strong>Follow us</strong>

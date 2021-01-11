@@ -1,0 +1,19 @@
+.responsive {
+    width: 100%;
+    height: auto;
+  }
+.card{
+    display: block;
+    padding-left: 20px;
+    padding-top:20px;
+    
+}
+.Bangle .container{
+  background-color: rgb(233, 227, 227);
+  
+}
+.Bangle button{
+  padding:auto;
+  margin:10px;
+  align-items: center;
+}

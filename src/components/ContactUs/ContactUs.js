@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { Component } from 'react'
 
 import './ContactUs.css';
@@ -14,6 +15,8 @@ export class ContactUs extends Component {
         errorm3: ''
         
         };
+        this.myChangeHandler=this.myChangeHandler.bind(this);
+        this.submitEmail=this.submitEmail.bind(this);
      }
      myChangeHandler = (event) => {
       let nam = event.target.name;
@@ -49,13 +52,40 @@ export class ContactUs extends Component {
       this.setState({errorm3: err3});
       this.setState({[nam]: val});
   }
+
+  submitEmail=(e)=>{
+  
+   var data={ nm: this.state.nm,
+              email:this.state.email,
+              mob: this.state.mob,
+
+   }
+   console.log(data);
+   if(this.state.errorm1!=''||this.state.errorm2!=""||this.state.errorm3!="")
+{
+    alert("please enter valid data");
+}
+else{
+   axios.post('http://localhost:3001/send',data)
+    .then(function(response) {
+        alert('your response recorded Successfully!!!');
+    })
+    .catch(function (error) {
+        console.log(error)
+    });
+}
+
+}
+resetForm(){
+   this.setState({nm: '', email: '',mob:null, errorm1: '',errorm2: '',errorm3: ''})
+}  
+
     render() {
         return (
             <div className="container" style={{border:"2px solid grey",marginTop:"20px"}} >
                 <div className="child1" >
-            <form >
-  
-                <div class="form-outline mb-4" style={{marginTop:"10px"}}>
+                <form  method="post" class="form1 pull-right validate">
+              <div class="form-outline mb-4" style={{marginTop:"10px"}}>
                    <label class="form-label" for="form4Example1">Name</label>
                    <input type="text" name="nm" id="form4Example1" class="form-control" onChange={this.myChangeHandler} />
                    <p>{this.state.errorm2}</p>
@@ -92,7 +122,7 @@ export class ContactUs extends Component {
                 </div>
 
                 <br></br>
-                <button type="submit" class="btn btn-primary btn-block mb-4" style={{width:"400px"}}>Send</button>
+                <input  class="btn btn-primary btn-block mb-4" value="SUBMIT" onClick={this.submitEmail} style={{width:"400px"}}/>
                <br></br>
             </form>
             </div>
